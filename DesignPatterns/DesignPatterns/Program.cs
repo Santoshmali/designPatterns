@@ -10,9 +10,15 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
-            //Observer obj = new Observer();
-            FactoryPattern factoryPattern = new FactoryPattern();
-            factoryPattern.ProcessSubscription();
+
+            Console.WriteLine("Choose which pattern you want to execute \r\n 1. Factory \r\n 2. Abstract Factory");
+
+            //var key = Console.ReadKey();
+            //int num = Convert.ToInt32(Console.ReadLine());
+            Pattern pattern;
+            Pattern.TryParse(Console.ReadLine(), out pattern);
+            var factoryMethod = new FactoryMethod();
+            factoryMethod.GetPattern(pattern).Execute();
 
             Console.ReadKey();
         }

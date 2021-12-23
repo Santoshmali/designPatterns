@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns
 {
-    public class AbstractFactoryPattern : IPattern
+    public class DefaultPattern : IPattern
     {
         public void Execute()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("No Implementation...");
         }
     }
 }

@@ -11,14 +11,21 @@ namespace DesignPatterns
     /// but let the subclasses decide which class to instantiate. 
     /// The Factory method lets a class defer instantiation to subclasses".
     /// </summary>
-    public class FactoryPattern
+    public class FactoryPattern : IPattern
     {
-        public void ProcessSubscription()
+        public void Execute()
         {
+            Console.WriteLine("Executing Factory Pattern...");
+
             CloudSubscription cloudSubscription;
             Console.WriteLine("Subscribing to Top Cloud...");
             cloudSubscription = new TopCloud();
             Console.WriteLine($"And Its name is {cloudSubscription.GetName()}");
+        }
+
+        public void ProcessSubscription()
+        {
+            
         }
     }
 
