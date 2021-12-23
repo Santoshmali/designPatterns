@@ -8,7 +8,7 @@ namespace DesignPatterns
 {
     public class DefaultPattern : IPattern
     {
-        public void Execute()
+        public void Execute(Cloud cloud)
         {
             Console.WriteLine("No Implementation...");
         }

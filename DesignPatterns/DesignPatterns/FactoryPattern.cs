@@ -7,25 +7,30 @@ using System.Threading.Tasks;
 namespace DesignPatterns
 {
     /// <summary>
-    /// The factory pattern "Define an interface for creating an object, 
-    /// but let the subclasses decide which class to instantiate. 
+    /// The factory pattern "Define an interface for creating an object, but let the subclasses decide which class to instantiate. 
     /// The Factory method lets a class defer instantiation to subclasses".
     /// </summary>
     public class FactoryPattern : IPattern
     {
-        public void Execute()
+        Dictionary<Cloud, CloudSubscription> _subscriptions = new Dictionary<Cloud, CloudSubscription>() {
+            { Cloud.Azure, new AzureCloud()},
+            { Cloud.Aws, new AwsCloud() }
+        };
+
+        public void Execute(Cloud cloud)
         {
             Console.WriteLine("Executing Factory Pattern...");
-
             CloudSubscription cloudSubscription;
-            Console.WriteLine("Subscribing to Top Cloud...");
-            cloudSubscription = new TopCloud();
-            Console.WriteLine($"And Its name is {cloudSubscription.GetName()}");
-        }
 
-        public void ProcessSubscription()
-        {
-            
+            if(_subscriptions.TryGetValue(cloud, out cloudSubscription))
+            {
+                Console.WriteLine("Subscribing to Top Cloud...");
+                Console.WriteLine($"And Its name is {cloudSubscription.GetName()}");
+            }
+            else
+            {
+                Console.WriteLine("No Data available...");
+            }
         }
     }
 
@@ -41,7 +46,7 @@ namespace DesignPatterns
         public abstract IProduct FactoryMethod();
     }
 
-    public class TopCloud : CloudSubscription
+    public class AwsCloud : CloudSubscription
     {
         public override IProduct FactoryMethod()
         {
@@ -49,7 +54,7 @@ namespace DesignPatterns
         }
     }
 
-    public class YouLiked : CloudSubscription
+    public class AzureCloud : CloudSubscription
     {
         public override IProduct FactoryMethod()
         {

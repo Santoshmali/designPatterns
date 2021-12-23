@@ -10,17 +10,34 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
+            ConsoleKeyInfo cki;
+            Console.Clear();
 
-            Console.WriteLine("Choose which pattern you want to execute \r\n 1. Factory \r\n 2. Abstract Factory");
+            // Establish an event handler to process key press events.
+            Console.Write("Press 'X' to quit.");
+            while (true)
+            {
+                Console.WriteLine("Choose your cloud provider you want to execute \r\n 1. Azure \r\n 2. Aws");
 
-            //var key = Console.ReadKey();
-            //int num = Convert.ToInt32(Console.ReadLine());
-            Pattern pattern;
-            Pattern.TryParse(Console.ReadLine(), out pattern);
-            var factoryMethod = new FactoryMethod();
-            factoryMethod.GetPattern(pattern).Execute();
+                Cloud cloud;
+                if (Cloud.TryParse(Console.ReadLine(), out cloud))
+                {
+                    Console.WriteLine("Choose which pattern you want to execute \r\n 1. Factory \r\n 2. Abstract Factory");
 
-            Console.ReadKey();
+                    //var key = Console.ReadKey();
+                    //int num = Convert.ToInt32(Console.ReadLine());
+                    Pattern pattern;
+                    Enum.TryParse(Console.ReadLine(), out pattern);
+                    var factoryMethod = new FactoryMethod();
+                    factoryMethod.GetPattern(pattern).Execute(cloud);
+                }
+
+                // Start a console read operation. Do not display the input.
+                cki = Console.ReadKey(true);
+                
+                // Exit if the user pressed the 'X' key.
+                if (cki.Key == ConsoleKey.X) break;
+            }
         }
     }
 }
