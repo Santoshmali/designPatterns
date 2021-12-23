@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Observer obj = new Observer();
+            //Observer obj = new Observer();
+            FactoryPattern factoryPattern = new FactoryPattern();
+            factoryPattern.ProcessSubscription();
+
+            Console.ReadKey();
         }
     }
 }
